@@ -1,0 +1,36 @@
+<!-- LOGIN_START -->
+<div class="container text-center w-55 p-3 col-lg-4 login" id="login">
+    <div class="form-floating text-center mb-3">
+        <img src="{{IMAGE}}" alt="" width="250" height="250" onload="showFormLogin()">
+    </div>
+
+    <form id="form_login" onsubmit="return login()">
+        <input type="hidden" id="todo" name="todo" value="login">
+
+        <div class="form-floating  mb-3">
+            <input type="text" class="form-control" name="username" id="username" placeholder ="UserName" >
+            <label for="username">UserName</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" name="password" id="password" minlength="8" max placeholder ="Password">
+            <label for="password">Password</label>
+        </div>
+
+        <div class="form-floating mb-2">
+            <input type="submit" class="btn btn-primary"  value="Login" >
+        </div>
+
+    </form>
+
+
+</div>
+<!-- LOGIN_END -->
+<!-- SCRIPT_START -->
+<script>
+    function login() {
+        send_form('notification','form_login');
+        return false;
+    }
+</script>
+<!-- SCRIPT_END -->

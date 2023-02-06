@@ -1,0 +1,50 @@
+<div class="row master-css">
+    <!-- CARD_SHOW_USERS_START -->
+    <div class="col-lg-4" >
+        <a href="users" >
+            <div class="small-box bg-cyan">
+                <div class="inner ml-2">
+                    <h2 class="pt-1">{{STRING_USERS}}</h2>
+                    <p class="pt-2"> </p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- CARD_SHOW_USERS_END -->
+
+    <!-- CARD_SHOW_RESTAURANTS_START -->
+    <div class="col-lg-4" >
+        <a href="restaurants" >
+            <div class="small-box bg-cyan">
+                <div class="inner ml-2">
+                    <h2 class="pt-1">{{STRING_RESTAURANTS}}</h2>
+                    <p class="pt-2"> </p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- CARD_SHOW_RESTAURANTS_END -->
+
+    <!-- CARD_SHOW_SETTINGS_START -->
+    <div class="col-lg-4" >
+        <a href="settings" >
+            <div class="small-box bg-cyan">
+                <div class="inner ml-2">
+                    <h2 class="pt-1">{{STRING_SETTINGS}}</h2>
+                    <p class="pt-2"> </p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- CARD_SHOW_SETTINGS_END -->
+
+</div>

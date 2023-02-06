@@ -1,0 +1,61 @@
+<div class="row master-css">
+
+
+    <div class="col-lg-4" >
+        <a href="{{URL_RESTAURANT_SP}}">
+            <div class="small-box bg-cyan">
+                <div class="inner ml-2">
+                    <h2 class="pt-1">{{Menu}}</h2>
+                    <p class="pt-2"> </p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-book-open-reader"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-lg-4" >
+        <a href="{{URL_RESTAURANT_PREVIEW}}" target="_blank">
+            <div class="small-box bg-cyan">
+                <div class="inner ml-2">
+                    <h2 class="pt-1">{{Preview}}</h2>
+                    <p class="pt-2"> </p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-binoculars"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-lg-4" >
+        <a href="#" onclick="send_data('spaceNotice','getModalQR')">
+            <div class="small-box bg-cyan">
+                <div class="inner ml-2">
+                    <h2 class="pt-1">{{QR Code}}</h2>
+                    <p class="pt-2"> </p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-lg-4" >
+        <a href="#" onclick="send_data('spaceNotice','getModalChangeMyMenuTheme')">
+            <div class="small-box bg-cyan">
+                <div class="inner ml-2">
+                    <h2 class="pt-1">{{Theme}}</h2>
+                    <p class="pt-2"> </p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+</div>

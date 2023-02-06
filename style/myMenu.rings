@@ -1,0 +1,87 @@
+<!-- TOP_START -->
+<div class="row ">
+    <div class="col-6">
+        <button type="button"  class="btn btn-outline-primary mb-2 float-right" onclick="send_data('spaceNotice','getModalAddItem')" >اضافة مادة جديدة</button>
+    </div>
+    <div class="col-6">
+        <button type="button"  class="btn btn-outline-primary mb-2 float-left" onclick="send_data('spaceNotice','getModalAddCategory')" >اضافة صنف جديد</button>
+    </div>
+</div>
+<!-- TOP_END -->
+<!-- CARD_START -->
+<div class="card">
+    <div class="card-header pb-2 sticky">
+        <button type="button"  class="btn btn-outline-danger btn-sm ml-2" onclick="send_data('spaceNotice','getModalDeleteCategory& categoryId={{CATEGORY_ID}}')" ><i class="fa-solid fa-trash-can"></i></button>
+        <button type="button"  class="btn btn-outline-success btn-sm ml-2" onclick="send_data('spaceNotice','getModalEditCategory& categoryId={{CATEGORY_ID}}')" ><i class="fa-solid fa-pen-to-square"></i></button>
+        <button type="button"  class="btn btn-outline-primary btn-sm ml-2" onclick="send_data('spaceNotice','getModalAddItemForThisCategory& categoryId={{CATEGORY_ID}}')" ><i class="fa-solid fa-plus"></i></button>
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i></button>
+            <h3 class="card-title mr-2 text-bold ">{{CATEGORY_NAME}}</h3>
+        </div>
+    </div>
+    <div id="table_{{CATEGORY_ID}}" class="card-body pt-0" style="display: block;">
+        {{CONTENT}}
+    </div>
+</div>
+<!-- CARD_END -->
+<!-- ITEM_RTL_START -->
+<div class="item_{{ITEM_ID}}">
+    <div class="row">
+        <div class="col-2 pt-lg-3 pt-md-3 text-center">
+            <button type="button"  class="btn btn-outline-danger btn-sm my-1" onclick="send_data('spaceNotice','getModalDeleteItem& itemId={{ITEM_ID}}& catId={{CATEGORY_ID}}')" >
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+            <button type="button"  class="btn btn-outline-success btn-sm my-1" onclick="send_data('spaceNotice','getModalEditItem& itemId={{ITEM_ID}}& catId={{CATEGORY_ID}}')" >
+                <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+        </div>
+        <div class="col-10">
+            <div class="products-list product-list-in-card pl-2 pr-2 text-right" dir="rtl">
+                <div class="item">
+                    <div class="product-img float-right">
+                        <img src="{{IMAGE}}" alt="item Image" class="rounded">
+                    </div>
+                    <div class="product-info ml-0 mr-5 pr-2 myMenuBody" >
+
+                        <label class="product-title text-blue myMenuName">{{NAME}}</label>
+                        <span class="badge badge-warning float-left myMenuPrice">{{PRICE}}</span>
+
+                        <div class="container mr-3 myMenuDetails">
+                            <span class="product-description pr-2">{{DETAILS}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="m-0">
+</div>
+<!-- ITEM_RTL_END -->
+"<!-- ITEM_WITHOUT_RELOAD_RTL_START -->\n" +
+"<div class=\"row\">\n" +
+    "    <div class=\"col-2 pt-3 text-center\">\n" +
+    "        <button type=\"button\"  class=\"btn btn-outline-primary btn-sm my-1\" onclick=\"alert('The item has been added successfully. It will become editable after refreshing the page')\" >\n" +
+    "            <i class=\"p-1 fa-solid fa-exclamation\"></i>\n" +
+    "        </button>\n" +
+    "    </div>\n" +
+"    <div class=\"col-10\">\n" +
+    "        <div class=\"products-list product-list-in-card pl-2 pr-2 text-right\" dir=\"rtl\">\n" +
+    "            <div class=\"item\">\n" +
+        "                <div class=\"product-img float-right\">\n" +
+        "                    <img src=\"{{IMAGE}}\" alt=\"item Image\" class=\"rounded\">\n" +
+        "                </div>\n" +
+    "                <div class=\"product-info ml-0 mr-5\" >\n" +
+    "                    <lable class=\"product-title text-blue pr-2\">{{NAME}}\n" +
+    "                        <span class=\"badge badge-warning float-left\">{{PRICE}}</span></lable>\n" +
+    "                    <br>\n" +
+    "                    <div class=\"container mr-3\">\n" +
+    "                        <span class=\"product-description pr-2\">{{DETAILS}}</span>\n" +
+    "                    </div>\n" +
+"                </div>\n" +
+"            </div>\n" +
+"        </div>\n" +
+"    </div>\n" +
+"</div>\n" +
+"<hr class=\"m-0\">\n" +
+"<!-- ITEM_WITHOUT_RELOAD_RTL_END -->"

@@ -1,0 +1,36 @@
+<div class="col-md-4 " onclick="goto('my_restaurant/{{RESTAURANT_SP}}')" style="cursor:pointer;">
+    <!-- Widget: user widget style 1 -->
+    <div class="card card-widget widget-user">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header bg-cyan">
+            <h2 class="widget-user-username">{{RESTAURANT_NAME}}</h2>
+            <h5 class="widget-user-desc text-sm">{{RESTAURANT_LOCATION}}</h5>
+        </div>
+        <div class="widget-user-image">
+            <img class="img-circle elevation-2" src="{{IMG}}" alt="User Avatar">
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <div class="description-block">
+                        <h5 class="description-header text-sm">{{THEME}}</h5>
+                        <span class="description-text text-sm">{{RESTAURANT_THEME}}</span>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <div class="description-block">
+                        <h5 class="description-header text-sm">{{VISITORS}}</h5>
+                        <span class="description-text text-sm">{{RESTAURANT_VISITORS}}</span>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+    <!-- /.widget-user -->
+</div>

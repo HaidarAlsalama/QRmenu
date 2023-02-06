@@ -1,0 +1,60 @@
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-not-fixed sidebar-collapse">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    {{NAV_BAR}}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    {{SIDE_BAR}}
+    <!-- /. Main Sidebar Container -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-6">
+                        <h1 class="m-0 text-dark act">{{PAGE_TITLE}}</h1>
+                        <label class="text-green">{{LABEL}}</label>
+                    </div><!-- /.col -->
+                    <div class="col-6">
+                        <div class="breadcrumb float-right">
+                            <div id="spaceNotice"></div>
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+<!--        <section class="content">-->
+            <section class="container pb-5">
+                <!-- main page her -->
+                {{CONTENT}}
+                <span class="goToUp" id="goToUp"><i class="fa-solid fa-angles-up"></i></span>
+            </section><!-- /.container-fluid -->
+<!--        </section>-->
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    {{FOOTER}}
+    <!-- Main Footer -->
+</div>
+<!-- ./wrapper -->
+
+{{SCRIPT}}
+<script>
+    document.querySelector('.goToUp').addEventListener('click',showGoToUpBtn);
+</script>
+
+</body>
+</html>

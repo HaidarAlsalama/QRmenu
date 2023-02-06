@@ -1,0 +1,145 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="" class="brand-link">
+        <img src="{{LOGO_IMG}}" alt="Rings Logo" class="brand-image" style="opacity: .8">
+        <span class="brand-text font-weight-light font-weight-bold">{{RINGS}}</span>
+        <i class="brand-text font-weight-light text-xs" >{{APP_NAME}}</i>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{USER_IMG}}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{USER_NAME}}</a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- ITEMS_SIDEBAR_START -->
+                <!-- Home -->
+                <li class="nav-item">
+                    <a href="{{URL_HOME}}" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            {{STRING_HOME}}
+                            <span class="right badge badge-danger">{{USER_LOGIN}}</span>
+                        </p>
+                    </a>
+                </li>
+
+                <!-- USERS_START -->
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa-solid fa-users"></i>
+                        <p>
+                            {{STRING_USERS}}
+                            <i class="fas right fa-solid fa-chevron-left"></i>
+                            <!--<span class="badge badge-info right">6</span>-->
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <!-- SHOW_ALL_USERS_START -->
+                        <li class="nav-item">
+                            <a href="{{URL_USERS}}" class="nav-link">
+                                <i class="far nav-icon fa-solid fa-users-cog"></i>
+                                <p>
+                                    {{STRING_SHOW_USERS}}
+                                    <!-- <span class="right badge badge-danger">New</span> -->
+                                </p>
+                            </a>
+                        </li>
+                        <!-- SHOW_ALL_USERS_END -->
+                        <!-- ADD_USER_START -->
+                        <li class="nav-item">
+                            <a href="#" onclick="send_data('spaceNotice','getModalAddUser')" class="nav-link">
+                                <i class="far nav-icon fa-solid fa-user-plus"></i>
+                                <p>{{STRING_ADD_USERS}}</p>
+                            </a>
+                        </li>
+                        <!-- ADD_USER_END -->
+                    </ul>
+                </li>
+                <!-- USERS_END -->
+
+                <!-- RESTAURANT_START -->
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa-solid fa-utensils"></i>
+                        <p>
+                            {{STRING_RESTAURANTS}}
+                            <i class="fas right fa-solid fa-chevron-left"></i>
+                            <!--<span class="badge badge-info right">6</span>-->
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <!-- SHOW_ALL_RESTAURANTS_START -->
+                        <li class="nav-item">
+                            <a href="{{URL_RESTAURANTS}}" class="nav-link">
+                                <i class="far nav-icon fa-solid fa-store"></i>
+                                <p>
+                                    {{STRING_SHOW_RESTAURANTS}}
+                                    <!-- <span class="right badge badge-danger">New</span> -->
+                                </p>
+                            </a>
+                        </li>
+                        <!-- SHOW_ALL_RESTAURANTS_START -->
+                        <!-- ADD_RESTAURANT_START -->
+                        <li class="nav-item">
+                            <a href="#" onclick="send_data('spaceNotice','getModalAddRestaurant')" class="nav-link">
+                                <i class="far nav-icon fa-solid fa-plus"></i>
+                                <p>{{STRING_ADD_RESTAURANTS}}</p>
+                            </a>
+                        </li>
+                        <!-- ADD_RESTAURANT_END -->
+                    </ul>
+                </li>
+                <!-- RESTAURANT_END -->
+
+                <!-- SETTINGS_START -->
+                <li class="nav-item">
+                    <a href="{{URL_SETTINGS}}" class="nav-link">
+                        <i class="nav-icon fas fa-cogs"></i>
+                        <p>
+                            {{STRING_SETTINGS}}
+                            <!-- <span class="right badge badge-danger">New</span> -->
+                        </p>
+                    </a>
+                </li>
+                <!-- SETTINGS_END -->
+
+                <!-- TESTAT_START -->
+<!--                <li class="nav-item">-->
+<!--                    <a href="{{URL_TESTAT}}" class="nav-link">-->
+<!--                        <i class="nav-icon fas fa-vial"></i>-->
+<!--                        <p>-->
+<!--                            {{STRING_TESTAT}}-->
+<!--                            &lt;!&ndash; <span class="right badge badge-danger">New</span> &ndash;&gt;-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                </li>-->
+                <!-- TESTAT_END -->
+                <!-- ITEMS_SIDEBAR_END -->
+                <!-- LOGOUT_START -->
+                <li class="nav-item logOutButton">
+                    <a href="#" onclick="send_data('spaceNotice','getModalLogOut')" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt "></i>
+                        <p>{{STRING_LOGOUT}}</p>
+                    </a>
+                </li>
+                <!-- LOGOUT_END -->
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+
+</aside>

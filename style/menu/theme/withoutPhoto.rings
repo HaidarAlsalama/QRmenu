@@ -1,0 +1,83 @@
+<!-- FOR_DELETE_START -->
+<!-- NAVE_BAR_START -->
+<nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+    <div class="container">
+        <a href="#" class="navbar-brand">
+            <span class="brand-text font-weight-light">{{NAME}}</span>
+        </a>
+        <!-- Right navbar links -->
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+            <li class="nav-item">
+                <a href="#menu" class="nav-link">Menu</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- NAVE_BAR_END -->
+<!-- ITEM_RTL_START -->
+<div class="products-list product-list-in-card pl-2 pr-2 text-right" dir="rtl">
+    <div class="item" id="{{ITEM_ID}}">
+        <div class="product-info ml-0 mr-0" >
+            <lable class="product-title text-black-60 pr-2">{{NAME}}
+                <span class="badge badge-secondary float-left">{{PRICE}}</span></lable>
+            <br>
+            <div class="container mr-1">
+                <span class="product-description">{{DETAILS}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="m-0">
+<!-- ITEM_RTL_END -->
+<!-- CARD_START -->
+<div class="card collapsed-card">
+    <div class="card-header pb-2">
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-plus"></i></button>
+            <h3 class="card-title mr-5  ">{{CATEGORY_NAME}}</h3>
+        </div>
+    </div>
+    <div class="card-body pt-0" style="display: none;">
+        {{CONTENT}}
+    </div>
+</div>
+<!-- CARD_END -->
+<!-- FOR_DELETE_END -->
+
+<body class="layout-top-nav"  style="height: auto;">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    {{NAV_BAR}}
+    <!-- /.navbar -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" >
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container">
+                <div id="notification" class="text-center"></div>
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+            <div class="container  pb-5" dir="rtl">
+                {{CONTENT}}
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    {{FOOTER}}
+</div>
+<!-- ./wrapper -->
+
+
+{{SCRIPT}}
+
+</body>
+</html>

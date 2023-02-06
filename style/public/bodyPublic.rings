@@ -1,0 +1,43 @@
+<body class="layout-top-nav hold-transition layout-footer-fixed"><div class="preloader">
+    <div class="rings">
+        <div class="ring1"></div>
+        <div class="ring2"></div>
+    </div>
+</div>
+
+<div class="wrapper">
+
+    <!-- Navbar -->
+    {{NAV_BAR}}
+    <!-- /.navbar -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" >
+        <!-- Content Header (Page header) -->
+
+        <div class="content-header">
+            <div class="container">
+                <div id="notification" class="text-center"></div>
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container">
+                {{CONTENT}}
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    {{FOOTER}}
+</div>
+<!-- ./wrapper -->
+
+{{SCRIPT}}
+
+</body>
+</html>
