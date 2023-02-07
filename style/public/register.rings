@@ -1,0 +1,76 @@
+<!-- REGISTER_START -->
+<div class="container text-center w-55 p-3 col-lg-8 login" id="login" >
+    <div class="form-floating text-center mb-5">
+        <img src="{{IMAGE}}" alt="" width="100" height="100" onload="showFormLogin()">
+    </div>
+
+    <div id="register">
+
+        <form id="formRegisterUser" onsubmit="return register()">
+
+            <div class="row">
+                <div class="form-floating mb-3 col-xl-6">
+                    <input type="text" class="form-control" name="fullName" id="fullName" placeholder ="Full Name" required>
+                    <label for="fullName"><h6>Full Name</h6></label>
+                </div>
+
+                <div class="form-floating mb-3 col-xl-6">
+                    <input type="text" class="form-control" name="username" id="username" placeholder ="User Name" required>
+                    <label for="username"><h6>User Name</h6></label>
+                </div>
+
+                <div class="form-floating mb-3 col-xl-6">
+                    <input type="text" class="form-control" name="email" id="email" placeholder ="E-mail" required>
+                    <label for="email"><h6>E-mail</h6></label>
+                </div>
+
+                <div class="form-floating mb-3 col-xl-6">
+                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder ="Mobile" required>
+                    <label for="mobile"><h6>Mobile</h6></label>
+                </div>
+
+                <div class="form-floating mb-3 col-xl-6">
+                    <input type="text" class="form-control" name="address" id="address" placeholder ="Address" required>
+                    <label for="address"><h6>Address</h6></label>
+                </div>
+
+                <div class="form-floating mb-3 col-xl-6">
+                    <input type="password" class="form-control" name="password" id="password" placeholder ="Password" required>
+                    <label for="password"><h6>Password</h6></label>
+                </div>
+
+                <div class="form-floating mb-3 col-xl-12">
+                    <input type="password" class="form-control" name="passwordCon" id="passwordCon" placeholder ="Confirm Password" required>
+                    <label for="passwordCon"><h6>Confirm Password</h6></label>
+                </div>
+
+                <div class="container col-xl-12">
+                    <div class="form-select form-select-sm mb-3 col-xl-12">
+                        <label for="myLang">Languages</label>
+                        <select id="myLang" name="myLang" class="form-select">
+                            <option value="en">English</option>
+                            <option value="ar">العربية</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <button type="submit"  class="btn btn-warning" >Register</button>
+
+        </form>
+
+    </div>
+
+</div>
+<!-- REGISTER_END -->
+<!-- SCRIPT_START -->
+<script>
+    function register() {
+        send_form('register','formRegisterUser');
+        return false;
+    }
+</script>
+<!-- SCRIPT_END -->

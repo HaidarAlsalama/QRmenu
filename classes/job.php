@@ -6,7 +6,7 @@ class job
     static $Page,$script = null,$pageTitle;
     public function __construct()
     {
-        if($_GET['job'] != 'login' && !isset($_SESSION['id']) && $_GET['job'] != 'menu' && $_GET['job'] != 'public') $_GET['job'] = 'login' & header('LOCATION: '._HOME_._DIR_FROM_ROOT_.'login');
+        if($_GET['job'] != 'login' && !isset($_SESSION['id']) && $_GET['job'] != 'menu' && $_GET['job'] != 'public' && $_GET['job'] != 'register') $_GET['job'] = 'login' & header('LOCATION: '._HOME_._DIR_FROM_ROOT_.'login');
         if($_GET['job'] == 'login' && isset($_SESSION['id'])) $_GET['job'] = 'home' & header('LOCATION: '._HOME_._DIR_FROM_ROOT_.'home');
 
         self::$pageTitle = str_replace('_',' ',strtoupper($_GET['job'])) ;
@@ -22,6 +22,10 @@ class job
             }
             case 'login':{
                 self::getLogin();
+                break;
+            }
+            case 'register':{
+                self::getRegister();
                 break;
             }
             default:{
@@ -145,6 +149,17 @@ class job
         preg_match($str2f, file_get_contents(_STYLE_.'public/login.rings'),$login);
         $str2f = "/<!-- SCRIPT_START -->(.*?)<!-- SCRIPT_END -->/s";
         preg_match($str2f, file_get_contents(_STYLE_.'public/login.rings'),$script);
+
+        self::$Page = str_replace('{{IMAGE}}',_HOME_._DIR_FROM_ROOT_.'img/rings.png',$login[0]);
+        self::$script = $script[0];
+    }
+
+    /** REGISTER Pages */
+    private function getRegister(){
+        $str2f = "/<!-- REGISTER_START -->(.*?)<!-- REGISTER_END -->/s";
+        preg_match($str2f, file_get_contents(_STYLE_.'public/register.rings'),$login);
+        $str2f = "/<!-- SCRIPT_START -->(.*?)<!-- SCRIPT_END -->/s";
+        preg_match($str2f, file_get_contents(_STYLE_.'public/register.rings'),$script);
 
         self::$Page = str_replace('{{IMAGE}}',_HOME_._DIR_FROM_ROOT_.'img/rings.png',$login[0]);
         self::$script = $script[0];

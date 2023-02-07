@@ -10,7 +10,7 @@ class style
         self::$head = $this->get_head();
         self::$footer = $this->get_footer();
 
-        if($_GET['job'] != 'public' && $_GET['job'] != 'process' && $_GET['job'] != 'login'){
+        if($_GET['job'] != 'public' && $_GET['job'] != 'process' && $_GET['job'] != 'login'  && $_GET['job'] != 'register'){
             self::$naveBar = $this->get_NavBar();
             self::$sidebar = $this->get_SideBar();
             self::$body = $this->get_body();
@@ -126,11 +126,13 @@ class style
     }
 
     static function get_navBarPublic(){
-        return str_replace(['{{IMAGE}}','{{URL_TOS}}','{{URL_PP}}','{{URL_LOGIN}}'],
+        return str_replace(['{{IMAGE}}','{{URL_TOS}}','{{URL_PP}}','{{URL_LOGIN}}','{{URL_REGISTER}}'],
                     [   _HOME_._DIR_FROM_ROOT_.'img/rings.png',
                         _HOME_._DIR_FROM_ROOT_.'public/terms_of_service',
                         _HOME_._DIR_FROM_ROOT_.'public/privacy_policy',
-                        _HOME_._DIR_FROM_ROOT_.'login'],file_get_contents(_STYLE_.'public/navBarPublic.rings')
+                        _HOME_._DIR_FROM_ROOT_.'login',
+                        _HOME_._DIR_FROM_ROOT_.'register'],file_get_contents(_STYLE_.'public/navBarPublic.rings')
+
         );
     }
 }
