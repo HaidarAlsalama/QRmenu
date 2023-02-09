@@ -14,11 +14,11 @@ if(isset($_POST['requestRand'])){
     }
 }
 
-if(isset($_SESSION['id'])) {
-    checkAccount();
-    checkSession();
-    updateLastSeen();
-}
+//if(isset($_SESSION['id'])) {
+//    checkAccount();
+//    checkSession();
+//    updateLastSeen();
+//}
 
 //print $_SESSION['thisRequest'];
 
@@ -388,21 +388,62 @@ if($_POST['todo'] == 'registerNewUser') {
     if(mysqli_query($GLOBALS['connectionSQL'], $queryInsert))
     {
         $codeRegister = rand(111111,999999);
+        $codeRegisterBase64 = base64_encode($codeRegister);
         $idUserRegister = getUserInfo($username)['id'];
-        $query = "INSERT INTO `verifies`(`user_id`, `code`) VALUES ($idUserRegister,$codeRegister)";
+        $query = "INSERT INTO `verifies`(`user_id`, `code`) VALUES ('$idUserRegister','$codeRegisterBase64')";
 
         if(mysqli_query($GLOBALS['connectionSQL'], $query)) {
             if(sendEmail($codeRegister,$email)) {
-                print '<script> notice(\'success\',\'We are sent you code Please check your E-mail\'); </script>';
+
+                $_SESSION['id'] = $idUserRegister;
+
+                print  '<div class="modal fade" id="confirmCode_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Confirm Code</h5>
+                                    <div id="Notice__confirmCode" class="text-center"></div>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>We are sent you code Please check your E-mail</h5><br>
+                                    <form id="formConfirmCode">
+                                        <input type="hidden" name="todo" id="todo" value="conCode">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" name="confirmCode" id="confirmCode" placeholder ="Confirm Code" >
+                                            <label for="confirmCode"><h6>Confirm Code</h6></label>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button"  class="btn btn-warning"  onclick="send_form(\'Notice__confirmCode\',\'formConfirmCode\')" >Send</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
+                print '<script>$(\'#confirmCode_modal\').modal(\'show\');</script>';
 
             }else print '<script> notice(\'error\',\'Error 547\'); </script>';
 
 
-        }
+        }else print '<script> notice(\'error\',\'Error 548\'); </script>';
 
     }
 
-    print $queryInsert;
+}
+
+if ($_POST['todo'] == 'conCode') {
+    $codeRegister = base64_encode(trim($_POST['confirmCode']));
+    $userId = $_SESSION['id'];
+    $query = "SELECT  `id` FROM `verifies` WHERE `user_id` = '$userId' AND `code` ='$codeRegister'";
+    $result = mysqli_query($GLOBALS['connectionSQL'],$query);
+    if(mysqli_fetch_all($result, MYSQLI_ASSOC)) {
+        $query = "UPDATE `verifies` SET `is_confirmed`= 1 WHERE `user_id` = ".$userId;
+        if(mysqli_query($GLOBALS['connectionSQL'],$query))
+            print $query;
+    }
+    else{
+        print '<script> notice(\'error\',\'Wrong code\'); </script>';
+    }
 
 }
 
