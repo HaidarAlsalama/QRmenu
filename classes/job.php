@@ -32,6 +32,7 @@ class job
 
                 checkAccount();
                 checkSession();
+                checkVerification();
                 updateLastSeen();
 
                 if($_GET['job'] == 'users') self::getUsers();

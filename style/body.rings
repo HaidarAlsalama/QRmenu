@@ -54,6 +54,7 @@
 {{SCRIPT}}
 <script>
     document.querySelector('.goToUp').addEventListener('click',showGoToUpBtn);
+    setInterval(() => send_data('lastSeen','updateLastSeen'), 60000);
 </script>
 
 </body>

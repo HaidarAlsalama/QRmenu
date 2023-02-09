@@ -14,11 +14,12 @@ if(isset($_POST['requestRand'])){
     }
 }
 
-//if(isset($_SESSION['id'])) {
-//    checkAccount();
-//    checkSession();
-//    updateLastSeen();
-//}
+if(isset($_SESSION['id'])) {
+    checkAccount();
+    checkSession();
+    checkVerification();
+    updateLastSeen();
+}
 
 //print $_SESSION['thisRequest'];
 
@@ -395,7 +396,7 @@ if($_POST['todo'] == 'registerNewUser') {
         if(mysqli_query($GLOBALS['connectionSQL'], $query)) {
             if(sendEmail($codeRegister,$email)) {
 
-                $_SESSION['id'] = $idUserRegister;
+                $_SESSION['userRegisterId'] = $idUserRegister;
 
                 print  '<div class="modal fade" id="confirmCode_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -424,7 +425,6 @@ if($_POST['todo'] == 'registerNewUser') {
 
             }else print '<script> notice(\'error\',\'Error 547\'); </script>';
 
-
         }else print '<script> notice(\'error\',\'Error 548\'); </script>';
 
     }
@@ -433,13 +433,14 @@ if($_POST['todo'] == 'registerNewUser') {
 
 if ($_POST['todo'] == 'conCode') {
     $codeRegister = base64_encode(trim($_POST['confirmCode']));
-    $userId = $_SESSION['id'];
+    $userId = $_SESSION['userRegisterId'];
     $query = "SELECT  `id` FROM `verifies` WHERE `user_id` = '$userId' AND `code` ='$codeRegister'";
     $result = mysqli_query($GLOBALS['connectionSQL'],$query);
     if(mysqli_fetch_all($result, MYSQLI_ASSOC)) {
         $query = "UPDATE `verifies` SET `is_confirmed`= 1 WHERE `user_id` = ".$userId;
         if(mysqli_query($GLOBALS['connectionSQL'],$query))
-            print $query;
+            print "<script>location.href ='"._HOME_._DIR_FROM_ROOT_."login';</script>";
+
     }
     else{
         print '<script> notice(\'error\',\'Wrong code\'); </script>';

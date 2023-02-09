@@ -27,7 +27,7 @@ function getUserInfo($userId){
     if ($userId == 'all')
     {
         $query = "SELECT `id`, `login`, `name`, `username`, `e-mail`, `mobile`, `language`, `parent_id`,
-                    `who_added`, `address`, `register_date`, `status` FROM `users`";
+                    `who_added`, `address`, `register_date`, `status`, `ncc` FROM `users`";
         $result = mysqli_query($GLOBALS['connectionSQL'], $query);
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -35,14 +35,14 @@ function getUserInfo($userId){
     elseif (is_numeric($userId))
     {
         $query = "SELECT `id`, `login`, `name`, `username`, `password`, `e-mail`, `mobile`, `language`, `parent_id`,
-                    `who_added`, `address`, `register_date`, `status` FROM `users` WHERE `id` = '$userId' LIMIT 1";
+                    `who_added`, `address`, `register_date`, `status`, `ncc` FROM `users` WHERE `id` = '$userId' LIMIT 1";
         $result = mysqli_query($GLOBALS['connectionSQL'], $query);
         $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
     else
     {
         $query = "SELECT `id`, `login`, `name`, `username`, `password`, `e-mail`, `mobile`, `language`, `parent_id`,
-                    `who_added`, `address`, `register_date`, `status` FROM `users` WHERE `username` = '$userId' LIMIT 1";
+                    `who_added`, `address`, `register_date`, `status`, `ncc` FROM `users` WHERE `username` = '$userId' LIMIT 1";
         $result = mysqli_query($GLOBALS['connectionSQL'], $query);
         $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
@@ -68,6 +68,7 @@ function getUserInfo($userId){
             $userArrayInfo['register_date'] = $user['register_date'];
             $userArrayInfo['status']        = $user['status'];
             $userArrayInfo['language']  = $user['language'];
+            $userArrayInfo['ncc']  = $user['ncc'];
 
             if($user['language'] == 'en') $userArrayInfo['language_name'] = 'English';
             else $userArrayInfo['language_name'] = 'العربية';
@@ -177,6 +178,48 @@ function sendEmail ($code,$email) {
         if(!mail($to, $subject, $message, $headers))
             return false;
     return true;
+}
+
+function checkVerification() {
+    $userInformation = getUserInfo($_SESSION['id']);
+
+    if($userInformation['ncc']){
+        $query = "SELECT * FROM `verifies` WHERE `user_id` =".$_SESSION['id'];
+        $result = mysqli_query($GLOBALS['connectionSQL'], $query);
+        $userVerification = mysqli_fetch_all($result, MYSQLI_ASSOC)[0];
+
+        if(!$userVerification['is_confirmed']){
+            if(sendEmail($userVerification['code'],$userInformation['e-mail'])){
+
+
+                print  '<div class="modal fade" id="confirmCode_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Confirm Code</h5>
+                                    <div id="Notice__confirmCode" class="text-center"></div>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>We are sent you code Please check your E-mail</h5><br>
+                                    <form id="formConfirmCode">
+                                        <input type="hidden" name="todo" id="todo" value="conCode">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" name="confirmCode" id="confirmCode" placeholder ="Confirm Code" >
+                                            <label for="confirmCode"><h6>Confirm Code</h6></label>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                            <button type="button"  class="btn btn-warning"  onclick="send_form(\'Notice__confirmCode\',\'formConfirmCode\')" >Send</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
+                print '<script>$(\'#confirmCode_modal\').modal(\'show\');</script>';
+            }
+
+        }
+    }
 }
 
 //// =====>  End Function For User ////

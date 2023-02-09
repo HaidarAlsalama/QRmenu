@@ -101,7 +101,7 @@ function goto(line) {
 }
 
 // setInterval(() => notice('question','Are You Here'), 12000); // 4 minutes
-setInterval(() => send_data('lastSeen','updateLastSeen'), 60000); // 5 minutes
+// setInterval(() => send_data('lastSeen','updateLastSeen'), 60000); // 5 minutes
 
 
 
