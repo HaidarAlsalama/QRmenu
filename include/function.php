@@ -189,7 +189,7 @@ function checkVerification() {
         $userVerification = mysqli_fetch_all($result, MYSQLI_ASSOC)[0];
 
         if(!$userVerification['is_confirmed']){
-            if(sendEmail($userVerification['code'],$userInformation['e-mail'])){
+            if(sendEmail(base64_decode($userVerification['code']),$userInformation['e-mail'])){
 
 
                 print  '<div class="modal fade" id="confirmCode_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
