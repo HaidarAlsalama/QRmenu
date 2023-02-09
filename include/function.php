@@ -32,10 +32,21 @@ function getUserInfo($userId){
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     }
-    $query = "SELECT `id`, `login`, `name`, `username`, `password`, `e-mail`, `mobile`, `language`, `parent_id`,
+    elseif (is_numeric($userId))
+    {
+        $query = "SELECT `id`, `login`, `name`, `username`, `password`, `e-mail`, `mobile`, `language`, `parent_id`,
                     `who_added`, `address`, `register_date`, `status` FROM `users` WHERE `id` = '$userId' LIMIT 1";
-    $result = mysqli_query($GLOBALS['connectionSQL'], $query);
-    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $result = mysqli_query($GLOBALS['connectionSQL'], $query);
+        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+    else
+    {
+        $query = "SELECT `id`, `login`, `name`, `username`, `password`, `e-mail`, `mobile`, `language`, `parent_id`,
+                    `who_added`, `address`, `register_date`, `status` FROM `users` WHERE `username` = '$userId' LIMIT 1";
+        $result = mysqli_query($GLOBALS['connectionSQL'], $query);
+        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+
 
     $userArrayInfo = array();
 
@@ -139,6 +150,33 @@ function NotAllowedEditAnythingForSuperAdmin($id){
         print '<script> notice(\'error\',\'Not allowed\'); </script>';
         die();
     }
+}
+
+function sendEmail ($code,$email) {
+    $to = $email;
+    $subject = "Code for register a new account";
+
+    $message = str_replace('{{CODE}}',$code,file_get_contents('pages/emailPage.php'));
+// add more info
+    /* $headers .= "Reply-To: The Sender <admin@domain.com>\r\n";
+     $headers .= "Return-Path: The Sender <admin@domain.com>\r\n";
+     $headers .= "From: sender@byrings.com" ."\r\n" .
+         $headers .= "Organization: Sender Organization\r\n";
+     $headers .= "MIME-Version: 1.0\r\n";
+     $headers .= "Content-type: text/html; charset=utf-8\r\n";
+     $headers .= "X-Priority: 3\r\n";
+     $headers .= "X-Mailer: PHP". phpversion() ."\r\n" ;*/
+    $headers = array(
+        "MIME-Version" => "1.0",
+        "Content-type" => "text/HTML; charset=UTF-8",
+        "From" => "Byrings",
+        "Reply-To" => "<admin@byrings.sy>"
+    );
+
+    if (!mail($to, $subject, $message, $headers))
+        if(!mail($to, $subject, $message, $headers))
+            return false;
+    return true;
 }
 
 //// =====>  End Function For User ////

@@ -1,46 +1,48 @@
 <!-- REGISTER_START -->
 <div class="container text-center w-55 p-3 col-lg-8 login" id="login" >
+    <div id="spaceNotice" class="text-center"></div>
     <div class="form-floating text-center mb-5">
-        <img src="{{IMAGE}}" alt="" width="100" height="100" onload="showFormLogin()">
+        <img src="{{IMAGE}}" alt="" width="100" height="100" >
     </div>
 
     <div id="register">
 
         <form id="formRegisterUser" onsubmit="return register()">
 
+            <input type="hidden" id="todo" name="todo" value="registerNewUser">
             <div class="row">
                 <div class="form-floating mb-3 col-xl-6">
-                    <input type="text" class="form-control" name="fullName" id="fullName" placeholder ="Full Name" required>
+                    <input type="text" class="form-control" name="fullName" id="fullName" placeholder ="Full Name" >
                     <label for="fullName"><h6>Full Name</h6></label>
                 </div>
 
                 <div class="form-floating mb-3 col-xl-6">
-                    <input type="text" class="form-control" name="username" id="username" placeholder ="User Name" required>
+                    <input type="text" class="form-control" name="username" id="username" placeholder ="User Name" >
                     <label for="username"><h6>User Name</h6></label>
                 </div>
 
                 <div class="form-floating mb-3 col-xl-6">
-                    <input type="text" class="form-control" name="email" id="email" placeholder ="E-mail" required>
+                    <input type="text" class="form-control" name="email" id="email" placeholder ="E-mail" >
                     <label for="email"><h6>E-mail</h6></label>
                 </div>
 
                 <div class="form-floating mb-3 col-xl-6">
-                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder ="Mobile" required>
+                    <input type="text" class="form-control" name="mobile" id="mobile" placeholder ="Mobile" >
                     <label for="mobile"><h6>Mobile</h6></label>
                 </div>
 
                 <div class="form-floating mb-3 col-xl-6">
-                    <input type="text" class="form-control" name="address" id="address" placeholder ="Address" required>
+                    <input type="text" class="form-control" name="address" id="address" placeholder ="Address" >
                     <label for="address"><h6>Address</h6></label>
                 </div>
 
                 <div class="form-floating mb-3 col-xl-6">
-                    <input type="password" class="form-control" name="password" id="password" placeholder ="Password" required>
+                    <input type="password" class="form-control" name="password" id="password" placeholder ="Password" >
                     <label for="password"><h6>Password</h6></label>
                 </div>
 
                 <div class="form-floating mb-3 col-xl-12">
-                    <input type="password" class="form-control" name="passwordCon" id="passwordCon" placeholder ="Confirm Password" required>
+                    <input type="password" class="form-control" name="passwordCon" id="passwordCon" placeholder ="Confirm Password" >
                     <label for="passwordCon"><h6>Confirm Password</h6></label>
                 </div>
 
@@ -69,7 +71,7 @@
 <!-- SCRIPT_START -->
 <script>
     function register() {
-        send_form('register','formRegisterUser');
+        send_form('notification','formRegisterUser');
         return false;
     }
 </script>

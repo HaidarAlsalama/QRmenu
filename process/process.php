@@ -20,6 +20,8 @@ if(isset($_SESSION['id'])) {
     updateLastSeen();
 }
 
+//print $_SESSION['thisRequest'];
+
 /*************** *************** ****************/
 
 $permission__Template__ = '<div class="form-check">
@@ -342,6 +344,65 @@ if($_POST['todo'] == 'addUser'){
         print '<script> notice(\'success\',\'Done\'); </script>';
         print '<script>$(\'#addUser_modal\').modal(\'hide\');</script>';
     }
+
+}
+
+if($_POST['todo'] == 'registerNewUser') {
+
+    $userIs = 'user';
+    $fullName = trim($_POST['fullName']);
+    $username = base64_encode(trim($_POST['username']));
+    $email = trim($_POST['email']);
+    $mobile = trim($_POST['mobile']);
+    $address = trim($_POST['address']);
+    $myLang = trim($_POST['myLang']);
+    $pass = trim($_POST['password']);
+    $passCon = trim($_POST['passwordCon']);
+
+    $id = 1;
+
+    $date = date('Y-m-d h:i:s');
+
+    if(empty($fullName) || empty($email) || empty($mobile) || empty($address) || empty($myLang) || empty($username) || empty($pass) || empty($passCon))
+    {print '<script> notice(\'warning\',\'All fields are required\'); </script>'; die();}
+
+    $hash = getHash($pass);
+    $hashCon = getHash($passCon);
+
+    if($hash != $hashCon) {print '<script> notice(\'warning\',\'Password Does Not Match\'); </script>'; die();}
+
+    $query = "SELECT `id` FROM `users` WHERE `username` = '$username'";
+    $result = mysqli_query($GLOBALS['connectionSQL'],$query);
+    if(mysqli_fetch_all($result, MYSQLI_ASSOC)) { print '<script> notice(\'error\',\'UserName is not available\'); </script>'; die(); }
+
+    $query = "SELECT `id` FROM `users` WHERE `e-mail` = '$email'";
+    $result = mysqli_query($GLOBALS['connectionSQL'],$query);
+    if(mysqli_fetch_all($result, MYSQLI_ASSOC)) { print '<script> notice(\'error\',\'E-mail is not available\'); </script>'; die(); }
+
+    $query = "SELECT `id` FROM `users` WHERE `mobile` = '$mobile'";
+    $result = mysqli_query($GLOBALS['connectionSQL'],$query);
+    if(mysqli_fetch_all($result, MYSQLI_ASSOC)) { print '<script> notice(\'error\',\'Mobile number is not available\'); </script>'; die(); }
+
+    $queryInsert = "INSERT INTO `users`(`login`, `name`, `username`, `e-mail`, `mobile`, `password`, `language`,`who_added`, `address`, `register_date`,`ncc`) 
+                VALUES ('$userIs','$fullName','$username','$email','$mobile','$hash','$myLang'," . $id . ",'$address','$date',1)";
+    if(mysqli_query($GLOBALS['connectionSQL'], $queryInsert))
+    {
+        $codeRegister = rand(111111,999999);
+        $idUserRegister = getUserInfo($username)['id'];
+        $query = "INSERT INTO `verifies`(`user_id`, `code`) VALUES ($idUserRegister,$codeRegister)";
+
+        if(mysqli_query($GLOBALS['connectionSQL'], $query)) {
+            if(sendEmail($codeRegister,$email)) {
+                print '<script> notice(\'success\',\'We are sent you code Please check your E-mail\'); </script>';
+
+            }else print '<script> notice(\'error\',\'Error 547\'); </script>';
+
+
+        }
+
+    }
+
+    print $queryInsert;
 
 }
 
