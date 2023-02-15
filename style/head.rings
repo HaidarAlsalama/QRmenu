@@ -18,6 +18,13 @@
     <!-- My css -->
     <link rel="stylesheet" href="{{DIR_FROM_ROOT}}css/main.css">
 
+    <!-- PWA -->
+    <meta name="theme-color" content="#ebebeb">
+    <link rel="manifest" href="https://byrings.sy/manifest.json">
+    <link rel="apple-touch-icon" href="{{DIR_FROM_ROOT}}img/rings-derivatives/rings-192_x_192.png">
+
+
+
     <!-- JS -->
     <!-- jQuery -->
     <script src="{{DIR_FROM_ROOT}}js/jquery.min.js"></script>

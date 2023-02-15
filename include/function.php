@@ -171,7 +171,7 @@ function sendEmail ($code,$email) {
         "MIME-Version" => "1.0",
         "Content-type" => "text/HTML; charset=UTF-8",
         "From" => "Byrings",
-        "Reply-To" => "<admin@byrings.sy>"
+        "Reply-To" => "<haidarsa48@gmail.com>"
     );
 
     if (!mail($to, $subject, $message, $headers))
