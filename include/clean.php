@@ -12,6 +12,17 @@ if (strstr($_SERVER['REQUEST_URI'],'<') || strstr($_SERVER['REQUEST_URI'],'>')
 $url = explode('/',$_SERVER['REQUEST_URI']);
 $item = $url[2 - _HOST_];
 
+if (strstr($item, "sw.js")) {
+    header('Content-Type: application/javascript');
+    readfile('sw.js');
+    die();
+}
+if (strstr($item, "manifest.json")) {
+    header('Content-Type: application/json; charset=utf-8');
+    readfile('manifest.json');
+    die();
+}
+
 if (strstr($item, "*")) require('pages/error.php');
 if (strstr($item, ")")) require('pages/error.php');
 if (strstr($item, "(")) require('pages/error.php');
