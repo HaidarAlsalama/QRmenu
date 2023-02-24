@@ -6,7 +6,11 @@ class job
     static $Page,$script = null,$pageTitle;
     public function __construct()
     {
-        if($_GET['job'] != 'login' && !isset($_SESSION['id']) && $_GET['job'] != 'menu' && $_GET['job'] != 'public' && $_GET['job'] != 'register') $_GET['job'] = 'login' & header('LOCATION: '._HOME_._DIR_FROM_ROOT_.'login');
+        if($_GET['job'] != 'login' && !isset($_SESSION['id'])
+            && $_GET['job'] != 'menu' && $_GET['job'] != 'public'
+                && $_GET['job'] != 'register')
+                    $_GET['job'] = 'login' & header('LOCATION: '._HOME_._DIR_FROM_ROOT_.'login');
+
         if($_GET['job'] == 'login' && isset($_SESSION['id'])) $_GET['job'] = 'home' & header('LOCATION: '._HOME_._DIR_FROM_ROOT_.'home');
 
         self::$pageTitle = str_replace('_',' ',strtoupper($_GET['job'])) ;
@@ -237,7 +241,6 @@ class job
         $restaurantSP = $_SESSION['restaurantSP'] = trim($_GET['all'][2 - _HOST_]);
         $restaurantInfo = getRestaurantInfo($restaurantSP);
         $restaurant_id = $_SESSION['restaurant_id'] = $restaurantInfo['id'];
-
         $userInfo = getUserInfo($_SESSION['id']);
         if(!empty($userInfo['parent_id'])) $userInfo = getUserInfo($userInfo['parent_id']);
 

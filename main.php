@@ -32,11 +32,14 @@ require_once 'phpqrcode/qrlib.php';
 //dump(json_encode(getUserInfo('all')));
 
 session_start($options);
-//dump($_GET);zzz
+//dump($_GET);
 $_SESSION['language'] ? define('_LANG_LIST_',$_SESSION['language']) : define('_LANG_LIST_','en'); // ['ar', 'en']
 require_once 'languages/language_'._LANG_LIST_.'.php';
-
-if($_GET['job'] == 'process')
+if($_GET['job'] == 'test')
+{
+    require_once 'forMain/test.php';
+}
+else if($_GET['job'] == 'process')
 {
     require_once 'forMain/ajax.php';
 }
